@@ -3,6 +3,7 @@ package model;
 
 public class Client extends Model{
 
+
     private String name;
     private String email;
     private String pass;

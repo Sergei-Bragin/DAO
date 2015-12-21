@@ -9,6 +9,7 @@ public class Model implements Serializable {
 
     }
 
+
     public Model(Long id){
         this.id = id;
     }

@@ -7,6 +7,7 @@ import model.Payment;
 import java.util.List;
 
 public class PaymentDatabaseDAO implements PaymentDao {
+
     public List<Payment> getAll() {
         return null;
     }

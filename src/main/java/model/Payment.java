@@ -3,6 +3,7 @@ package model;
 
 public class Payment extends Model {
 
+
     private Long idAcc1;
     private Long idAcc2;
     private double sum;

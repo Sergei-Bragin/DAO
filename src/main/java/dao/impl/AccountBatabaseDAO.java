@@ -7,6 +7,7 @@ import java.util.List;
 
 
 public class AccountBatabaseDAO implements AccountDao {
+
     public List<Account> getAll() {
         return null;
     }

@@ -3,6 +3,7 @@ package model;
 
 public class Account extends Model {
 
+
     private Long idUser;
     private double balanc;
 
