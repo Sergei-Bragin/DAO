@@ -41,19 +41,16 @@ public class ClientDatabaseDAO implements ClientDao {
     @Override
     public void add(Client model) {
         log.info("Create new Client"+model.getName());
-        String SQL = "insert into client (name, email, pass) values (?,?,?);";
-
-        Client client = null;
+        String SQL = "insert into client (name, email, pass) values (?,?,?)";
 
         try (Connection con = FactoryDatabaseDAO.createConnection()){
             log.trace("Connect addCommand");
 
-
             try (PreparedStatement statement = con != null ? con.prepareStatement(SQL) : null){
                 log.trace("Create prepared statement");
-                statement.setString(1, client.getName());
-                statement.setString(2,client.getEmail());
-                statement.setString(3,client.getPass());
+                statement.setString(1,model.getName());
+                statement.setString(2,model.getEmail());
+                statement.setString(3,model.getPass());
 
             }catch (SQLException e){
                 log.error("Statement addCommand exception",e);

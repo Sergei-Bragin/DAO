@@ -15,10 +15,10 @@ public class FactoryDatabaseDAO extends FactoryDAO{
 
     private static final Logger log = Logger.getLogger(FactoryDatabaseDAO.class);
 
-    public final String USER = "root";
-    public final String PASSWORD = "root";
-    public final String URL = "jdbc:mysql://localhost:3306/dao";
-    public final String DRIVER = "com.mysql.jdbc.Driver";
+    public static final String USER = "root";
+    public static final String PASSWORD = "root";
+    public static final String URL = "jdbc:mysql://localhost:3306/dao";
+    public static final String DRIVER = "com.mysql.jdbc.Driver";
 
     public static Connection createConnection(){
         Connection connection;
@@ -40,17 +40,17 @@ public class FactoryDatabaseDAO extends FactoryDAO{
     }
 
     @Override
-    public ClientDao getClientDAO() {
+    public  ClientDao getClientDAO() {
         return new ClientDatabaseDAO();
     }
 
     @Override
-    public AccountDao getAccountDAO() {
+    public  AccountDao getAccountDAO() {
         return new AccountDatabaseDAO();
     }
 
     @Override
-    public PaymentDao getPaymentDAO() {
+    public  PaymentDao getPaymentDAO() {
         return new PaymentDatabaseDAO();
     }
 }
