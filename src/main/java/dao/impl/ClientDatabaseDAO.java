@@ -9,6 +9,8 @@ import java.util.List;
 
 public class ClientDatabaseDAO implements ClientDao {
 
+
+
     public double getClientBalance(Client client, List<Account> accounts) {
         return 0;
     }
