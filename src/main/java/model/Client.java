@@ -17,6 +17,12 @@ public class Client extends Model{
         super(id);
     }
 
+    public Client(String name, String email, String pass){
+        this.name = name;
+        this.email = email;
+        this.pass = pass;
+    }
+
     public String getName() {
         return name;
     }
