@@ -76,6 +76,7 @@ public class ClientDatabaseDAO implements ClientDao {
 
                 statement.setInt(1,id);
 
+
                 ResultSet result = statement.executeQuery();
                 result.next();
                 client.setId(result.getInt("id"));
