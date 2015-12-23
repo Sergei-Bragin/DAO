@@ -62,16 +62,14 @@ public class ClientDatabaseDAO implements ClientDao {
 
     @Override
     public Client getById(int id) {
-        System.out.println("Взять по ИД");
         log.info("Get client by ID = " + id);
         String SQL  = "select * from client where id = ?";
         Client client = new Client();
 
         try (Connection con = FactoryDatabaseDAO.createConnection()){
             log.trace("Connect GET BY ID");
-            System.out.println("Конектимся");
+
             try (PreparedStatement statement = con != null ? con.prepareStatement(SQL) : null) {
-                System.out.println("Стейтмен");
                 log.trace("Create prepared statement");
 
                 statement.setInt(1,id);
