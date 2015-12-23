@@ -12,7 +12,7 @@ public class AccountDatabaseDAO implements AccountDao {
         return null;
     }
 
-    public Account getById(Long id) {
+    public Account getById(int id) {
         return null;
     }
 

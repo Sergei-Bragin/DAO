@@ -9,9 +9,7 @@ public class Test {
     public static void main(String[] args) {
 
         ClientDao clientDatabaseDAO = new ClientDatabaseDAO();
-        List<Client> clients = clientDatabaseDAO.getAll();
-        for(Client client: clients){
-            System.out.println(client);
-        }
+        Client client = clientDatabaseDAO.getById(10);
+        System.out.println(client);
     }
 }

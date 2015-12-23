@@ -12,7 +12,7 @@ public class PaymentDatabaseDAO implements PaymentDao {
         return null;
     }
 
-    public Payment getById(Long id) {
+    public Payment getById(int id) {
         return null;
     }
 

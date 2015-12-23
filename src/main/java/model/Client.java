@@ -13,7 +13,7 @@ public class Client extends Model{
         super();
     }
 
-    public Client(Long id){
+    public Client(int id){
         super(id);
     }
 

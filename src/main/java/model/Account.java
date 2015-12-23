@@ -4,22 +4,22 @@ package model;
 public class Account extends Model {
 
 
-    private Long idUser;
+    private int idUser;
     private double balanc;
 
     public  Account(){
         super();
     }
 
-    public Account(Long id){
+    public Account(int id){
         super(id);
     }
 
-    public Long getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Long idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

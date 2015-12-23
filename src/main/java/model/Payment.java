@@ -4,31 +4,31 @@ package model;
 public class Payment extends Model {
 
 
-    private Long idAcc1;
-    private Long idAcc2;
+    private int idAcc1;
+    private int idAcc2;
     private double sum;
 
     public Payment() {
         super();
     }
 
-    public Payment(Long id){
+    public Payment(int id){
         super(id);
     }
 
-    public Long getIdAcc1() {
+    public int getIdAcc1() {
         return idAcc1;
     }
 
-    public void setIdAcc1(Long idAcc1) {
+    public void setIdAcc1(int idAcc1) {
         this.idAcc1 = idAcc1;
     }
 
-    public Long getIdAcc2() {
+    public int getIdAcc2() {
         return idAcc2;
     }
 
-    public void setIdAcc2(Long idAcc2) {
+    public void setIdAcc2(int idAcc2) {
         this.idAcc2 = idAcc2;
     }
 

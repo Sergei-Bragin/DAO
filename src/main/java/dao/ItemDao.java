@@ -10,7 +10,7 @@ public interface ItemDao <T extends Model> {
 
     List<T> getAll();
 
-    T getById(Long id);
+    T getById(int id);
 
     void add(T model);
 
