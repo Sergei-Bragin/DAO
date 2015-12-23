@@ -15,26 +15,27 @@ public class FactoryDatabaseDAO extends FactoryDAO{
 
     private static final Logger log = Logger.getLogger(FactoryDatabaseDAO.class);
 
-    public static final String USER = "root";
-    public static final String PASSWORD = "root";
-    public static final String URL = "jdbc:mysql://localhost:3306/dao";
-    public static final String DRIVER = "com.mysql.jdbc.Driver";
+    static final String DRIVER = "com.mysql.jdbc.Driver";
+    static final String URL = "jdbc:mysql://localhost:3306/dao";
+    static final String LOGIN = "root";
+    static final String PASS = "root";
 
     public static Connection createConnection(){
-        Connection connection;
         try {
             Class.forName(DRIVER);
-            connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            log.info("Connect to Database");
-            return connection;
         }catch (ClassNotFoundException e){
-            log.error("Class not found exception in createConnect", e);
+            log.error("DRIVER problem", e);
             return null;
+        }
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(URL,LOGIN,PASS);
+            return connection;
         }catch (SQLException e){
-            log.error("SQLException in createConnect", e);
+            log.error("Connection problem in FcactoryDAO",e);
             return null;
-        }catch (Exception e){
-            log.error("Exception in createConnect", e);
+        }catch (NullPointerException e){
+            log.error("Connection is NILL in DAO Factory",e);
             return null;
         }
     }

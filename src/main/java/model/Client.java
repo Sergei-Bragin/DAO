@@ -54,4 +54,9 @@ public class Client extends Model{
     public void setAccount(Account account) {
         this.account = account;
     }
+
+    @Override
+    public String toString() {
+        return "Client{ " +"id "+ getId()+ ", name: " + name + ", email: " + email + ", pass: " + pass + " }";
+    }
 }

@@ -7,10 +7,8 @@ import model.Account;
 import model.Client;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientDatabaseDAO implements ClientDao {
@@ -29,46 +27,75 @@ public class ClientDatabaseDAO implements ClientDao {
         return null;
     }
 
+    @Override
     public List<Client> getAll() {
+        log.info("Get all client");
+        String SQL = "select * from client";
+        List<Client> clients = new ArrayList<>();
 
-        return null;
+        try(Connection con = FactoryDatabaseDAO.createConnection()) {
+            log.trace("Connect GET ALL");
+
+            try (Statement statement = con != null ? con.createStatement():null){
+                ResultSet result = statement.executeQuery(SQL);
+                while (result.next()){
+                    Client client = new Client();
+                    client.setId((long)result.getInt("id"));
+                    client.setName(result.getString("name"));
+                    client.setEmail(result.getString("email"));
+                    client.setPass(result.getString("pass"));
+                    clients.add(client);
+                }
+            }catch (SQLException e){
+                log.error("Statement GET ALL exception",e);
+            }catch (NullPointerException e){
+                log.error("CON is null",e);
+            }
+
+        }catch (SQLException e){
+            log.error("Connect exception in GET ALL ", e);
+        }
+        return clients;
     }
 
+    @Override
     public Client getById(Long id) {
         return null;
     }
 
     @Override
     public void add(Client model) {
+
         log.info("Create new Client"+model.getName());
         String SQL = "insert into client (name, email, pass) values (?,?,?)";
 
         try (Connection con = FactoryDatabaseDAO.createConnection()){
-            log.trace("Connect addCommand");
+            log.trace("Connect ADD COMMAND");
 
             try (PreparedStatement statement = con != null ? con.prepareStatement(SQL) : null){
+
                 log.trace("Create prepared statement");
                 statement.setString(1,model.getName());
                 statement.setString(2,model.getEmail());
-                statement.setString(3,model.getPass());
+                statement.setString(3,model.getPass()); //Пока так Но парль надо Хешировать!!!
+                statement.executeUpdate();
 
             }catch (SQLException e){
-                log.error("Statement addCommand exception",e);
+                log.error("Statement ADD COMMAND exception",e);
             }catch (NullPointerException e){
-                log.error("Con is null",e);
+                log.error("CON is null",e);
             }
 
-
         } catch (SQLException e) {
-            log.error("Connect exception in addCommand", e);
+            log.error("Connect exception in ADD COMMAND", e);
         }
 
     }
-
+    @Override
     public void update(Client model) {
 
     }
-
+    @Override
     public void del(Client model) {
 
     }
