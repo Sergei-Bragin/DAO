@@ -96,7 +96,6 @@ public class ClientDatabaseDAO implements ClientDao {
 
     @Override
     public void add(Client model) {
-
         log.info("Create new Client"+model.getName());
         String SQL = "insert into client (name, email, pass) values (?,?,?)";
 
@@ -125,10 +124,54 @@ public class ClientDatabaseDAO implements ClientDao {
 
     @Override
     public void update(Client model) {
+        log.info("UPDATE client"+model.getId());
+        String SQL = "update client set name = ?, email = ?, pass = ? where id = ?";
 
+        try (Connection con = FactoryDatabaseDAO.createConnection()){
+            log.trace("Connect UPDATE");
+
+            try (PreparedStatement statement = con != null ? con.prepareStatement(SQL) : null){
+                log.trace("Create prepared statement");
+
+                statement.setString(1,model.getName());
+                statement.setString(2,model.getEmail());
+                statement.setString(3,model.getPass());
+                statement.setInt(4, model.getId());
+                statement.executeUpdate();
+
+            }catch (SQLException e){
+                log.error("Statement UPDATE exception",e);
+            }catch (NullPointerException e){
+                log.error("CON is null",e);
+            }
+
+        }catch (SQLException e){
+            log.error("UPDATE exception", e);
+        }
     }
+
     @Override
     public void del(Client model) {
+        log.info("DELETE Client ");
+        String SQL = "delete from client where id = ?";
 
+        try (Connection con = FactoryDatabaseDAO.createConnection()) {
+            log.trace("Connect DELETE");
+
+            try(PreparedStatement statement = con != null ? con.prepareStatement(SQL) : null) {
+                log.trace("Create prepared statement");
+
+                statement.setInt(1,model.getId());
+                statement.executeUpdate();
+
+            }catch (SQLException e){
+                log.error("Statement DELETE exception",e);
+            }catch (NullPointerException e){
+                log.error("CON is null",e);
+            }
+
+        }catch (SQLException e){
+            log.error("DELETE exception", e);
+        }
     }
 }

@@ -12,12 +12,16 @@ public class Client extends Model{
     public Client() {
         super();
     }
-
     public Client(int id){
         super(id);
     }
-
     public Client(String name, String email, String pass){
+        this.name = name;
+        this.email = email;
+        this.pass = pass;
+    }
+    public Client(int id, String name, String email, String pass){
+        super(id);
         this.name = name;
         this.email = email;
         this.pass = pass;
