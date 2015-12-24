@@ -10,8 +10,8 @@ public class Test {
     public static void main(String[] args) {
 
         ClientDao clientDatabaseDAO = new ClientDatabaseDAO();
-        Client client = new Client(3, "Vika Flex", "vikaflex12@gmail.com", "flexvik");
-        clientDatabaseDAO.update(client);
+        Client client = clientDatabaseDAO.getClientWithMinBalance();
+        System.out.println(client);
 
 
     }
