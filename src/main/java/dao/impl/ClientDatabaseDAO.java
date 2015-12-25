@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -133,13 +134,14 @@ public class ClientDatabaseDAO implements ClientDao {
     public List<Client> getAll() {
         log.info("Get all client");
         String SQL = "select * from client";
-        List<Client> clients = new ArrayList<>();
+        List<Client> clients = Collections.EMPTY_LIST;
 
         try(Connection con = FactoryDatabaseDAO.createConnection()) {
             log.trace("Connect GET ALL");
 
             try (Statement statement = con != null ? con.createStatement():null){
                 log.trace("Create prepared statement");
+                clients = new ArrayList<>();
 
                 ResultSet result = statement.executeQuery(SQL);
                 while (result.next()){
@@ -157,7 +159,7 @@ public class ClientDatabaseDAO implements ClientDao {
             }
 
         }catch (SQLException e){
-            log.error("Connect exception in GET ALL ", e);
+            log.error("Connect exception in GET ALL ",e);
         }
         return clients;
     }

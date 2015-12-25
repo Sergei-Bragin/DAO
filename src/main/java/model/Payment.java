@@ -8,6 +8,7 @@ public class Payment extends Model {
     private int idAcc2;
     private double sum;
 
+
     public Payment() {
         super();
     }
